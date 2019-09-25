@@ -1,2 +1,10 @@
 ---
-# tasks file for ./
+- name: Install PostgreSQL PLPerl
+  apt:
+    name: "postgresql-plperl-{{ postgresql_version }}"
+    state: present
+
+- name: Install needed perl libraries
+  apt:
+    name: "{{ evergreen_database_perl_dependencies }}"
+    state: present
