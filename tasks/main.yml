@@ -8,3 +8,12 @@
   apt:
     name: "{{ evergreen_database_perl_dependencies }}"
     state: present
+
+- name: Install cpanm for ansible
+  apt:
+    name: cpanminus
+    state: present
+
+- name: Install MARC::File::XML for PostgreSQL
+  cpanm:
+    name: "MARC::File::XML"
