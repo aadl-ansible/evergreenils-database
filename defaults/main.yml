@@ -56,3 +56,7 @@ evergreen_database_perl_dependencies:
   - libuuid-tiny-perl
   - libxml-libxml-perl
   - libxml-libxslt-perl
+  - libdbi1
+  - libdbi-dev
+  - libdbd-pg-perl
+  - libdbd-pgsql
