@@ -1,4 +1,4 @@
-aadl.evergreenils-database
+aadl.evergreenils_database
 =========
 ![](https://github.com/aadl-ansible/evergreenils-database/workflows/Ansible%20Lint/badge.svg)
 
@@ -87,7 +87,7 @@ Example Playbook
     - hosts: database-servers
       become: yes
       roles:
-         - { role: aadl.evergreenils-database }
+         - { role: aadl.evergreenils_database }
 
 License
 -------
