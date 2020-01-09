@@ -1,38 +1,100 @@
-Role Name
+aadl.evergreenils-database
 =========
+![](https://github.com/aadl-ansible/evergreenils-database/workflows/Ansible%20Lint/badge.svg)
 
-A brief description of the role goes here.
+This role installs PostgreSQL and the dependencies needed for running the Evergreen ILS.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role is tested on Ubuntu but may work on other APT based systems. The dependency role also supports CentOS but we need to tweak and test the evergreen perl requirements.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```yaml
+postgresql_version: 10
+
+postgresql_listen_addresses:
+  - '*'
+postgresql_pg_hba_passwd_hosts:
+  - 0.0.0.0/0
+postgresql_ext_install_contrib: yes
+postgresql_ext_install_dev_headers: yes
+
+postgresql_random_page_cost: 2.0
+
+postgresql_extensions:
+  - python3-psycopg2
+  - libbusiness-isbn-perl
+  - libjson-xs-perl
+  - liblibrary-callnumber-lc-perl
+  - libmarc-record-perl
+  - libmarc-xml-perl
+  - librose-uri-perl
+  - libuuid-tiny-perl
+  - libxml-libxml-perl
+  - libxml-libxslt-perl
+
+postgresql_users:
+  - name: evergreen
+    pass: evergreen
+    encrypted: yes
+
+postgresql_user_privileges:
+  - name: evergreen
+    role_attr_flags: "SUPERUSER"
+
+postgresql_databases:
+  - name: evergreen
+    owner: evergreen
+    hstore: yes
+    encoding: 'UNICODE'
+    lc_collate: 'C'
+    lc_ctype: 'C'
+
+postgresql_database_extensions:
+  - db: evergreen
+    extensions:
+      - xml2
+      - intarray
+      - pgcrypto
+      - unaccent
+
+evergreen_database_perl_dependencies:
+  - libbusiness-isbn-perl
+  - libjson-xs-perl
+  - liblibrary-callnumber-lc-perl
+  - libmarc-record-perl
+  - librose-uri-perl
+  - libuuid-tiny-perl
+  - libxml-libxml-perl
+  - libxml-libxslt-perl
+  - libdbi1
+  - libdbi-dev
+  - libdbd-pg-perl
+  - libdbd-pgsql
+```
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+This role depends on the (ANXS.postgresql)[https://github.com/ANXS/postgresql] role to do most of the heavy lifting. See that role for additional variables and settings that can be changed.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+    - hosts: database-servers
+      become: yes
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: aadl.evergreenils-database }
 
 License
 -------
 
-BSD
+GPL2 (Note: The ANXS.postgresql dependency is licensed under MIT)
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+This role is maintained by the (AADL Dev Team)(https://twitter.com/aadl_tech)

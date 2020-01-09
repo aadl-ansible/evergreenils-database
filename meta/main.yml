@@ -19,4 +19,4 @@ galaxy_info:
     - postgresql
 
 dependencies:
-  - { role: ANXS.postgresql, version: v1.11.1}
+  - { role: ANXS.postgresql, version: v1.12.0}
