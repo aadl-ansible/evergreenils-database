@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: AADL
   description: Role for Evergreen ILS Database Provisioning
@@ -10,8 +11,8 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-      - xenial
-      - bionic
+        - xenial
+        - bionic
 
   galaxy_tags:
     - evergreenils
@@ -19,4 +20,4 @@ galaxy_info:
     - postgresql
 
 dependencies:
-  - { role: ANXS.postgresql, version: v1.12.0}
+  - { role: ANXS.postgresql, version: v1.12.0 }

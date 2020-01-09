@@ -1,4 +1,5 @@
-name: Ansible Lint  # feel free to pick your own name
+---
+name: Ansible Lint
 
 on: push
 
@@ -8,11 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Important: This sets up your GITHUB_WORKSPACE environment variable
-    - uses: actions/checkout@v1
-    - name: Lint Ansible Playbook
-      # replace "master" with any valid ref
-      uses: ansible/ansible-lint-action@master
-      with:
-        targets: "./"
-        args: "--exclude=meta"
+      - uses: actions/checkout@v1
+      - name: Lint Ansible Playbook
+        uses: ansible/ansible-lint-action@4.1.0
+        with:
+          targets: "./"
+          args: "--exclude=meta"
