@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Lint Ansible Playbook
-        uses: ansible/ansible-lint-action@4.1.0
+        uses: ansible/ansible-lint-action@v4.1.0
         with:
           targets: "./"
           args: "--exclude=meta"
