@@ -60,3 +60,4 @@ evergreen_database_perl_dependencies:
   - libdbi-dev
   - libdbd-pg-perl
   - libdbd-pgsql
+  - make
