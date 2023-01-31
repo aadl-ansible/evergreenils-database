@@ -17,6 +17,7 @@ postgresql_extensions:
   - liblibrary-callnumber-lc-perl
   - libmarc-record-perl
   - libmarc-xml-perl
+  - libmarc-charset-perl
   - librose-uri-perl
   - libuuid-tiny-perl
   - libxml-libxml-perl
@@ -52,6 +53,8 @@ evergreen_database_perl_dependencies:
   - libjson-xs-perl
   - liblibrary-callnumber-lc-perl
   - libmarc-record-perl
+  - libmarc-xml-perl
+  - libmarc-charset-perl
   - librose-uri-perl
   - libuuid-tiny-perl
   - libxml-libxml-perl
