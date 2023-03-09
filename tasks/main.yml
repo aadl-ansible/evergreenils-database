@@ -17,3 +17,11 @@
 - name: Install MARC::File::XML for PostgreSQL
   cpanm:
     name: "MARC::File::XML"
+
+- name: Install String::KeyboardDistance for PostgreSQL
+  cpanm:
+    name: "String::KeyboardDistance"
+
+- name: Install Text::Levenshtein::Damerau::XS for PostgreSQL
+  cpanm:
+    name: "Text::Levenshtein::Damerau::XS"
