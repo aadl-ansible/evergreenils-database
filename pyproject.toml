@@ -1,0 +1,10 @@
+[project]
+name = "evergreenils-database"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ansible>=13.5.0",
+    "ansible-lint>=26.4.0",
+]
