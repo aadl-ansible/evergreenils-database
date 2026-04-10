@@ -1,33 +1,31 @@
 ---
-postgresql_version: 14
+postgresql_version: 18
 
 postgresql_listen_addresses:
   - '*'
 postgresql_pg_hba_passwd_hosts:
   - 0.0.0.0/0
-postgresql_ext_install_contrib: yes
-postgresql_ext_install_dev_headers: yes
+postgresql_ext_install_contrib: true
+postgresql_ext_install_dev_headers: true
 
 postgresql_random_page_cost: 2.0
 
 postgresql_extensions:
   - gcc
   - python3-psycopg2
-  - libbusiness-isbn-perl
-  - libjson-xs-perl
-  - liblibrary-callnumber-lc-perl
-  - libmarc-record-perl
-  - libmarc-xml-perl
-  - libmarc-charset-perl
-  - librose-uri-perl
-  - libuuid-tiny-perl
-  - libxml-libxml-perl
-  - libxml-libxslt-perl
+  - perl-Business-ISBN
+  - perl-JSON-XS
+  - perl-MARC-Record
+  - perl-MARC-XML
+  - perl-MARC-Charset
+  - perl-UUID-Tiny
+  - perl-XML-LibXML
+  - perl-XML-LibXSLT
 
 postgresql_users:
   - name: evergreen
     pass: evergreen
-    encrypted: yes
+    encrypted: true
 
 postgresql_user_privileges:
   - name: evergreen
@@ -36,7 +34,7 @@ postgresql_user_privileges:
 postgresql_databases:
   - name: evergreen
     owner: evergreen
-    hstore: yes
+    hstore: true
     encoding: 'UNICODE'
     lc_collate: 'C'
     lc_ctype: 'C'
@@ -50,18 +48,14 @@ postgresql_database_extensions:
       - unaccent
 
 evergreen_database_perl_dependencies:
-  - libbusiness-isbn-perl
-  - libjson-xs-perl
-  - liblibrary-callnumber-lc-perl
-  - libmarc-record-perl
-  - libmarc-xml-perl
-  - libmarc-charset-perl
-  - librose-uri-perl
-  - libuuid-tiny-perl
-  - libxml-libxml-perl
-  - libxml-libxslt-perl
-  - libdbi1
-  - libdbi-dev
-  - libdbd-pg-perl
-  - libdbd-pgsql
+  - perl-Business-ISBN
+  - perl-JSON-XS
+  - perl-MARC-Record
+  - perl-MARC-XML
+  - perl-MARC-Charset
+  - perl-UUID-Tiny
+  - perl-XML-LibXML
+  - perl-XML-LibXSLT
+  - perl-DBI
+  - perl-DBD-Pg
   - make

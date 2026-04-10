@@ -1,6 +1,7 @@
 ---
-- hosts: all
+- name: Test evergreenils-database role
+  hosts: all
   remote_user: it
   become: true
   roles:
-    - ../evergreenils-database
+    - role: aadl.evergreenils_database

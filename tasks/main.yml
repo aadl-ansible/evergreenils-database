@@ -1,27 +1,35 @@
 ---
 - name: Install PostgreSQL PLPerl
-  apt:
-    name: "postgresql-plperl-{{ postgresql_version }}"
+  ansible.builtin.dnf:
+    name: "postgresql{{ postgresql_version }}-plperl"
     state: present
 
 - name: Install needed perl libraries
-  apt:
+  ansible.builtin.dnf:
     name: "{{ evergreen_database_perl_dependencies }}"
     state: present
 
 - name: Install cpanm for ansible
-  apt:
-    name: cpanminus
+  ansible.builtin.dnf:
+    name: perl-App-cpanminus
     state: present
 
 - name: Install MARC::File::XML for PostgreSQL
-  cpanm:
+  community.general.cpanm:
     name: "MARC::File::XML"
 
+- name: Install Library::CallNumber::LC for PostgreSQL
+  community.general.cpanm:
+    name: "Library::CallNumber::LC"
+
+- name: Install Rose::URI for PostgreSQL
+  community.general.cpanm:
+    name: "Rose::URI"
+
 - name: Install String::KeyboardDistance for PostgreSQL
-  cpanm:
+  community.general.cpanm:
     name: "String::KeyboardDistance"
 
 - name: Install Text::Levenshtein::Damerau::XS for PostgreSQL
-  cpanm:
+  community.general.cpanm:
     name: "Text::Levenshtein::Damerau::XS"

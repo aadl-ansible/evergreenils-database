@@ -1,20 +1,20 @@
 ---
 dependency:
   name: galaxy
+  options:
+    requirements-file: requirements.yml
 driver:
-  name: vagrant
-  provider:
-    name: virtualbox
-lint:
-  name: yamllint
+  name: docker
 platforms:
-  - name: evgbionic
-    box: ubuntu/bionic64
+  - name: evg-el10
+    image: almalinux:10
+    pre_build_image: true
+    privileged: true
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
+  playbooks:
+    create: create.yml
+    converge: converge.yml
+    destroy: destroy.yml
 verifier:
-  name: inspec
-  lint:
-    name: rubocop
+  name: ansible

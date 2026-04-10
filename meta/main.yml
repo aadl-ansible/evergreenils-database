@@ -1,18 +1,19 @@
 ---
 galaxy_info:
   author: AADL
+  namespace: aadl
+  role_name: evergreenils_database
   description: Role for Evergreen ILS Database Provisioning
   company: Ann Arbor District Library
 
   license: GPL-2.0-or-later
 
-  min_ansible_version: 2.6
+  min_ansible_version: "2.15"
 
   platforms:
-    - name: Ubuntu
+    - name: EL
       versions:
-        - xenial
-        - bionic
+        - '10'
 
   galaxy_tags:
     - evergreenils

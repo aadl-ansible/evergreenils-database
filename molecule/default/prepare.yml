@@ -3,7 +3,6 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: Install python for Ansible
-      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
-      become: true
+    - name: Install sudo and python3
+      ansible.builtin.raw: dnf install -y sudo python3
       changed_when: false

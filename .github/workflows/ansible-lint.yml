@@ -9,9 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
+      - name: Install role dependencies
+        run: ansible-galaxy install -r molecule/default/requirements.yml
       - name: Lint Ansible Playbook
-        uses: ansible/ansible-lint-action@master
+        uses: ansible/ansible-lint-action@v25
         with:
           targets: "./"
-          args: "--exclude=meta"

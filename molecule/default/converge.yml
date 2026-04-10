@@ -3,4 +3,4 @@
   hosts: all
   become: true
   roles:
-    - role: evergreenils-database
+    - role: aadl.evergreenils_database
