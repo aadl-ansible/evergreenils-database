@@ -19,6 +19,3 @@ galaxy_info:
     - evergreenils
     - code4lib
     - postgresql
-
-dependencies:
-  - { role: ANXS.postgresql, version: v1.11.1 }

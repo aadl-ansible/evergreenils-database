@@ -1,61 +1,67 @@
 ---
-postgresql_version: 18
-
+# PostgreSQL network configuration
 postgresql_listen_addresses:
   - '*'
 postgresql_pg_hba_passwd_hosts:
   - 0.0.0.0/0
+
+# PostgreSQL package options
 postgresql_ext_install_contrib: true
 postgresql_ext_install_dev_headers: true
 
+# PostgreSQL performance tuning
 postgresql_random_page_cost: 2.0
 
-postgresql_extensions:
-  - gcc
-  - python3-psycopg2
-  - perl-Business-ISBN
-  - perl-JSON-XS
-  - perl-MARC-Record
-  - perl-MARC-XML
-  - perl-MARC-Charset
-  - perl-UUID-Tiny
-  - perl-XML-LibXML
-  - perl-XML-LibXSLT
-
+# PostgreSQL users to create
 postgresql_users:
   - name: evergreen
-    pass: evergreen
-    encrypted: true
+    password: evergreen
+    role_attr_flags: SUPERUSER
 
-postgresql_user_privileges:
-  - name: evergreen
-    role_attr_flags: "SUPERUSER"
-
+# PostgreSQL databases to create
 postgresql_databases:
   - name: evergreen
     owner: evergreen
-    hstore: true
-    encoding: 'UNICODE'
-    lc_collate: 'C'
-    lc_ctype: 'C'
+    encoding: UTF8
+    lc_collate: C
+    lc_ctype: C
 
+# Extensions to install per database
 postgresql_database_extensions:
   - db: evergreen
     extensions:
+      - hstore
       - xml2
       - intarray
       - pgcrypto
       - unaccent
 
+# Extra system packages installed alongside PostgreSQL
+postgresql_extra_packages:
+  - gcc
+  - libxslt-devel
+  - python3-psycopg2
+
+# Perl packages available from RHEL AppStream/BaseOS repos
 evergreen_database_perl_dependencies:
-  - perl-Business-ISBN
   - perl-JSON-XS
-  - perl-MARC-Record
-  - perl-MARC-XML
-  - perl-MARC-Charset
-  - perl-UUID-Tiny
   - perl-XML-LibXML
-  - perl-XML-LibXSLT
   - perl-DBI
   - perl-DBD-Pg
+  - perl-LWP-Protocol-https
   - make
+
+# CPAN modules required for PG side
+# notest: true skips the upstream test suite during install (bug in MARC)
+evergreen_database_cpan_modules:
+  - name: Business::ISBN
+  - name: MARC::File::XML
+    notest: true
+  - name: MIME::Base32
+  - name: Library::CallNumber::LC
+  - name: Rose::URI
+  - name: UUID::Tiny
+  - name: XML::LibXSLT
+  - name: Pass::OTP
+  - name: String::KeyboardDistance
+  - name: Text::Levenshtein::Damerau::XS
