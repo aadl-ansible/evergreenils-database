@@ -6,3 +6,12 @@
     - name: Install sudo and python3
       ansible.builtin.raw: dnf install -y sudo python3
       changed_when: false
+
+    - name: Wait for systemd to be ready
+      ansible.builtin.raw: systemctl is-system-running
+      register: systemd_state
+      until: "'running' in systemd_state.stdout or 'degraded' in systemd_state.stdout"
+      retries: 10
+      delay: 3
+      changed_when: false
+      failed_when: false

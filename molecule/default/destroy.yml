@@ -39,4 +39,3 @@
       loop: "{{ server.results }}"
       loop_control:
         label: "{{ item.item.name }}"
-
