@@ -10,7 +10,7 @@ postgresql_ext_install_contrib: true
 postgresql_ext_install_dev_headers: true
 
 # PostgreSQL performance tuning
-postgresql_random_page_cost: 2.0
+postgresql_random_page_cost: 2
 
 # PostgreSQL users to create
 postgresql_users:
@@ -44,7 +44,7 @@ postgresql_extra_packages:
 
 # Perl packages available from RHEL AppStream/BaseOS repos
 evergreen_database_perl_dependencies:
-  - perl-JSON-XS
+  - perl-JSON-PP
   - perl-XML-LibXML
   - perl-DBI
   - perl-DBD-Pg
@@ -65,3 +65,4 @@ evergreen_database_cpan_modules:
   - name: Pass::OTP
   - name: String::KeyboardDistance
   - name: Text::Levenshtein::Damerau::XS
+  - name: JSON::XS

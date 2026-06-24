@@ -51,16 +51,16 @@
   notify: Reload PostgreSQL
 
 - name: Configure listen_addresses
-  community.postgresql.postgresql_set:
-    name: listen_addresses
+  community.postgresql.postgresql_alter_system:
+    param: listen_addresses
     value: "{{ postgresql_listen_addresses | join(',') }}"
   become: true
   become_user: postgres
   notify: Restart PostgreSQL
 
 - name: Configure random_page_cost
-  community.postgresql.postgresql_set:
-    name: random_page_cost
+  community.postgresql.postgresql_alter_system:
+    param: random_page_cost
     value: "{{ postgresql_random_page_cost }}"
   become: true
   become_user: postgres
@@ -93,7 +93,7 @@
 - name: Install PostgreSQL extensions
   community.postgresql.postgresql_ext:
     name: "{{ item.1 }}"
-    db: "{{ item.0.db }}"
+    login_db: "{{ item.0.db }}"
     state: present
   loop: "{{ postgresql_database_extensions | subelements('extensions') }}"
   become: true
